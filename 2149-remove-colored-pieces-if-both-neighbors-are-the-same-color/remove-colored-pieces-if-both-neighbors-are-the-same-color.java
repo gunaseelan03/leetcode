@@ -1,15 +1,24 @@
 class Solution {
     public boolean winnerOfGame(String colors) {
-        int a=0,b=0;
-        for(int i=0;i<=colors.length()-3;i++){
-            String str = colors.substring(i,i+3);
-            //System.out.println(str);
-            if(str.equals("AAA"))
-                a++;
-            else if(str.equals("BBB"))
-                b++;
+        int aCnt=0,bCnt=0;
+        int aTemp=0,bTemp=0;
+        for(char c : colors.toCharArray()){
+            if(c=='A'){
+                bTemp=0;
+                aTemp++;
+                if(aTemp>=3){
+                    aCnt++;
+                }
+            }
+            else{
+                aTemp=0;
+                bTemp++;
+                if(bTemp>=3){
+                    bCnt++;
+                }
+            }
         }
-        //System.out.println(a+" "+b);
-        return a>b;
+        return aCnt>bCnt;
+        
     }
 }
