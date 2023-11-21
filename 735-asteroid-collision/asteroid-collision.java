@@ -1,26 +1,22 @@
 class Solution {
     public int[] asteroidCollision(int[] asteroids) {
-        List<Integer>lst = new ArrayList<>();
-				for(int i:asteroids)
-					lst.add(i);
-        for(int i=lst.size()-2;i>=0;i--){
-		    while(i+1<lst.size() && lst.get(i)>0 && lst.get(i+1)<0){
-		        if(i+1<lst.size() && Math.abs(lst.get(i+1))<lst.get(i)){
-		            lst.remove(i+1);
-		        }
-						else if(i+1<lst.size() && Math.abs(lst.get(i+1))==lst.get(i)){
-							lst.remove(i);
-							lst.remove(i);
-						}
-						else{
-		            lst.remove(i);
-		        }
-		    }
-		}
-		int idx = 0;
-		int res[] = new int[lst.size()];
-    for(int i=0;i<lst.size();i++)
-			res[idx++]=lst.get(i);
-		return res;
+        int n = asteroids.length;
+        int j = 0;
+
+        for (int i = 0; i < n; i++) {
+            int asteroid = asteroids[i];
+            while (j>0 && asteroids[j-1]>0 && asteroid<0 && asteroids[j-1] < Math.abs(asteroid)) 
+            {j--;}
+
+            if (j==0 || asteroid>0 || asteroids[j-1]<0) 
+                asteroids[j++] = asteroid;
+            else if(asteroids[j-1] == Math.abs(asteroid)) 
+                j--;
+        }
+        
+        int[] result = new int[j];
+        System.arraycopy(asteroids, 0, result, 0, j);
+
+        return result;
     }
 }
