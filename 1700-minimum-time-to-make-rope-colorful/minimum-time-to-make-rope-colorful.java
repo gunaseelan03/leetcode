@@ -5,16 +5,13 @@ class Solution {
             if(colors.charAt(i)==colors.charAt(i-1)){
                 sum+=neededTime[i];
                 max = Math.max(max,neededTime[i]);
-                count++;
                 continue;
             }
             res+=sum-max;
             sum = neededTime[i];
             max = neededTime[i];
-            count = 1;
         }
-        if(count>1)
-            res+=sum-max;
+        res+=sum-max;
         return res;
     }
 }
